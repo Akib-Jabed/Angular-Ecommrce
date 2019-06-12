@@ -1,3 +1,5 @@
+import { AdminGaurdService } from './services/admin-gaurd.service';
+import { AuthGaurdService } from './services/auth-gaurd.service';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ProductsComponent } from './components/products/products.component';
@@ -11,42 +13,20 @@ import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.
 import { CheckOutComponent } from './components/check-out/check-out.component';
 
 const routes: Routes = [
-  {
-    path: '',
-    component: HomeComponent
-  },
-  {
-    path: 'products',
-    component: ProductsComponent
-  },
-  {
-    path: 'orders',
-    component: MyOrdersComponent
-  },
-  {
-    path: 'shopping-cart',
-    component: ShoppingCartComponent
-  },
-  {
-    path: 'check-out',
-    component: CheckOutComponent
-  },
-  {
-    path: 'orders-suucess',
-    component: OrderSuccessComponent
-  },
-  {
-    path: 'login',
-    component: LoginComponent
-  },
-  {
-    path: 'admin/products',
-    component: AdminProductsComponent
-  },
-  {
-    path: 'admin/orders',
-    component: AdminOrdersComponent
-  }
+  // Accessible via All
+  { path: '', component: HomeComponent },
+  { path: 'products', component: ProductsComponent },
+  { path: 'shopping-cart', component: ShoppingCartComponent },
+  { path: 'login', component: LoginComponent },
+
+  // Only accessible for authenticated users
+  { path: 'orders', component: MyOrdersComponent, canActivate: [AuthGaurdService] },
+  { path: 'check-out', component: CheckOutComponent, canActivate: [AuthGaurdService] },
+  { path: 'orders-success', component: OrderSuccessComponent, canActivate: [AuthGaurdService] },
+
+  // Only accessible for admin
+  { path: 'admin/products', component: AdminProductsComponent, canActivate: [AuthGaurdService, AdminGaurdService] },
+  { path: 'admin/orders', component: AdminOrdersComponent, canActivate: [AuthGaurdService, AdminGaurdService] }
 ];
 
 @NgModule({

@@ -1,3 +1,6 @@
+import { UserService } from './services/user.service';
+import { AuthGaurdService } from './services/auth-gaurd.service';
+import { AuthService } from './services/auth.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
@@ -6,7 +9,7 @@ import { AppComponent } from './app.component';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { AngularFireAuthModule } from '@angular/fire/auth';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { environment } from '../environments/environment';
 
@@ -43,7 +46,11 @@ import { LoginComponent } from './components/login/login.component';
     AngularFireAuthModule,
     NgbModule
   ],
-  providers: [],
+  providers: [
+    AuthService,
+    AuthGaurdService,
+    UserService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
