@@ -1,3 +1,4 @@
+import { CategoryService } from './services/category.service';
 import { UserService } from './services/user.service';
 import { AuthGaurdService } from './services/auth-gaurd.service';
 import { AuthService } from './services/auth.service';
@@ -10,6 +11,7 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { CustomFormsModule } from 'ngx-custom-validators';
 
 import { environment } from '../environments/environment';
 
@@ -23,6 +25,10 @@ import { MyOrdersComponent } from './components/my-orders/my-orders.component';
 import { AdminProductsComponent } from './components/admin/admin-products/admin-products.component';
 import { AdminOrdersComponent } from './components/admin/admin-orders/admin-orders.component';
 import { LoginComponent } from './components/login/login.component';
+import { AdminProductFormComponent } from './components/admin/admin-product-form/admin-product-form.component';
+import { FormsModule } from '@angular/forms';
+import { ProductService } from './services/product.service';
+
 
 @NgModule({
   declarations: [
@@ -36,7 +42,8 @@ import { LoginComponent } from './components/login/login.component';
     MyOrdersComponent,
     AdminProductsComponent,
     AdminOrdersComponent,
-    LoginComponent
+    LoginComponent,
+    AdminProductFormComponent
   ],
   imports: [
     BrowserModule,
@@ -44,12 +51,16 @@ import { LoginComponent } from './components/login/login.component';
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
-    NgbModule
+    NgbModule,
+    FormsModule,
+    CustomFormsModule
   ],
   providers: [
     AuthService,
     AuthGaurdService,
-    UserService
+    UserService,
+    CategoryService,
+    ProductService
   ],
   bootstrap: [AppComponent]
 })

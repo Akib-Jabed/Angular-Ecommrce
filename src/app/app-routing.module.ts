@@ -11,6 +11,7 @@ import { LoginComponent } from './components/login/login.component';
 import { MyOrdersComponent } from './components/my-orders/my-orders.component';
 import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
 import { CheckOutComponent } from './components/check-out/check-out.component';
+import { AdminProductFormComponent } from './components/admin/admin-product-form/admin-product-form.component';
 
 const routes: Routes = [
   // Accessible via All
@@ -25,8 +26,10 @@ const routes: Routes = [
   { path: 'orders-success', component: OrderSuccessComponent, canActivate: [AuthGaurdService] },
 
   // Only accessible for admin
+  { path: 'admin/orders', component: AdminOrdersComponent, canActivate: [AuthGaurdService, AdminGaurdService] },
   { path: 'admin/products', component: AdminProductsComponent, canActivate: [AuthGaurdService, AdminGaurdService] },
-  { path: 'admin/orders', component: AdminOrdersComponent, canActivate: [AuthGaurdService, AdminGaurdService] }
+  { path: 'admin/products/new', component: AdminProductFormComponent, canActivate: [AuthGaurdService, AdminGaurdService] },
+  { path: 'admin/products/:id', component: AdminProductFormComponent, canActivate: [AuthGaurdService, AdminGaurdService] },
 ];
 
 @NgModule({
