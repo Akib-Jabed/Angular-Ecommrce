@@ -12,6 +12,7 @@ import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CustomFormsModule } from 'ngx-custom-validators';
+import {DataTableModule} from "angular-6-datatable";
 
 import { environment } from '../environments/environment';
 
@@ -53,7 +54,8 @@ import { ProductService } from './services/product.service';
     AngularFireAuthModule,
     NgbModule,
     FormsModule,
-    CustomFormsModule
+    CustomFormsModule,
+    DataTableModule
   ],
   providers: [
     AuthService,
