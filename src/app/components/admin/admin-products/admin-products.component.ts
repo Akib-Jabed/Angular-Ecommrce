@@ -21,7 +21,6 @@ export class AdminProductsComponent implements OnInit, OnDestroy{
         .subscribe(products => {
           this.products = products;
           this.products.forEach(product => {
-            console.log(product.key);
             this.filteredProducts.push({
               key: product.key,
               title: product.payload.val().title,

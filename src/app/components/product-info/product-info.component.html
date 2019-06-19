@@ -1,0 +1,10 @@
+<div class="card" style="width: 18rem;">
+  <img [ngStyle]="{'height': '200px', 'width': '100%'}" [src]="product.payload.val().imageUrl" class="card-img-top">
+  <div class="card-body">
+    <h5 class="card-title">{{ product.payload.val().title }}</h5>
+    <p class="card-text">{{ product.payload.val().price | currency:'USD':true }}</p>
+    <div class="card-footer">
+      <a href="#" class="btn btn-primary btn-block">Add to Cart</a>
+    </div>
+  </div>
+</div>

@@ -29,6 +29,8 @@ import { LoginComponent } from './components/login/login.component';
 import { AdminProductFormComponent } from './components/admin/admin-product-form/admin-product-form.component';
 import { FormsModule } from '@angular/forms';
 import { ProductService } from './services/product.service';
+import { ProductCategoryComponent } from './components/product-category/product-category.component';
+import { ProductInfoComponent } from './components/product-info/product-info.component';
 
 
 @NgModule({
@@ -44,7 +46,9 @@ import { ProductService } from './services/product.service';
     AdminProductsComponent,
     AdminOrdersComponent,
     LoginComponent,
-    AdminProductFormComponent
+    AdminProductFormComponent,
+    ProductCategoryComponent,
+    ProductInfoComponent
   ],
   imports: [
     BrowserModule,
