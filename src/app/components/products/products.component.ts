@@ -1,3 +1,4 @@
+import { ShoppingCartService } from './../../services/shopping-cart.service';
 import { Product } from './../../models/product';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
@@ -14,7 +15,7 @@ export class ProductsComponent implements OnInit {
   filteredProducts: Product[] = [];
   categoryName: string;
 
-  constructor(private route: ActivatedRoute, private productService: ProductService) {
+  constructor(private route: ActivatedRoute, private productService: ProductService, private cartService: ShoppingCartService) {
     this.productService.getProducts()
         .pipe(switchMap(products => {
           this.filteredProducts = this.products = products;
@@ -29,6 +30,10 @@ export class ProductsComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  addToCart(product: Product) {
+    this.cartService.addToCart(product);
   }
 
 }

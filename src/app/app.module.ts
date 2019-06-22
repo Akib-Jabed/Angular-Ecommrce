@@ -30,7 +30,7 @@ import { AdminProductFormComponent } from './components/admin/admin-product-form
 import { FormsModule } from '@angular/forms';
 import { ProductService } from './services/product.service';
 import { ProductCategoryComponent } from './components/product-category/product-category.component';
-import { ProductInfoComponent } from './components/product-info/product-info.component';
+import { ShoppingCartService } from './services/shopping-cart.service';
 
 
 @NgModule({
@@ -48,7 +48,6 @@ import { ProductInfoComponent } from './components/product-info/product-info.com
     LoginComponent,
     AdminProductFormComponent,
     ProductCategoryComponent,
-    ProductInfoComponent
   ],
   imports: [
     BrowserModule,
@@ -66,7 +65,8 @@ import { ProductInfoComponent } from './components/product-info/product-info.com
     AuthGaurdService,
     UserService,
     CategoryService,
-    ProductService
+    ProductService,
+    ShoppingCartService
   ],
   bootstrap: [AppComponent]
 })
