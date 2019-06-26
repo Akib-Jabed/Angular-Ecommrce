@@ -31,6 +31,7 @@ import { FormsModule } from '@angular/forms';
 import { ProductService } from './services/product.service';
 import { ProductCategoryComponent } from './components/product-category/product-category.component';
 import { ShoppingCartService } from './services/shopping-cart.service';
+import { ProductCardComponent } from './components/product-card/product-card.component';
 
 
 @NgModule({
@@ -48,6 +49,7 @@ import { ShoppingCartService } from './services/shopping-cart.service';
     LoginComponent,
     AdminProductFormComponent,
     ProductCategoryComponent,
+    ProductCardComponent,
   ],
   imports: [
     BrowserModule,

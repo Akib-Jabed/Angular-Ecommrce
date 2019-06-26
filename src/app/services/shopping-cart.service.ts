@@ -1,12 +1,18 @@
+import { Cart } from './../models/cart';
+import { Item } from './../models/item';
 import { Product } from './../models/product';
-import { AngularFireDatabase } from '@angular/fire/database';
+import { AngularFireDatabase, AngularFireObject } from '@angular/fire/database';
 import { Injectable } from '@angular/core';
 import { take } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ShoppingCartService {
+
+  items: Item[];
+
 
   constructor(private db: AngularFireDatabase) { }
 
@@ -16,11 +22,12 @@ export class ShoppingCartService {
     });
   }
 
-  private getCart(cartId: string) {
+  async getCart() {
+    let cartId = await this.getOrCreateCartId();
     return this.db.object('/shopping-cart/' + cartId).valueChanges();
   }
 
-  private async getOrCreateCartId() {
+  private async getOrCreateCartId(): Promise<string> {
     let cartId = localStorage.getItem('cartId');
     if(cartId) return cartId;
     let result = await this.create();
@@ -29,21 +36,26 @@ export class ShoppingCartService {
   }
 
   async addToCart(product$) {
-    let product: Product = {
-      key: product$.key,
-      title: product$.payload.val().title,
-      category: product$.payload.val().category,
-      price: product$.payload.val().price,
-      imageUrl: product$.payload.val().imageUrl
-    };
+    let product: Product = product$;
     let cartId = await this.getOrCreateCartId();
     let item$ = this.db.object('/shopping-cart/' + cartId + '/items/' + product.key);
-    item$.valueChanges().pipe(take(1)).subscribe(item => {
+    item$.valueChanges().pipe(take(1)).subscribe((item: Item) => {
       if(item) {
         item$.update({quantity: item.quantity + 1});
       }
       else {
         item$.set({product: product, quantity: 1});
+      }
+    });
+  }
+
+  async removeFromCart(product$) {
+    let product: Product = product$;
+    let cartId = await this.getOrCreateCartId();
+    let item$ = this.db.object('/shopping-cart/' + cartId + '/items/' + product.key);
+    item$.valueChanges().pipe(take(1)).subscribe((item: Item) => {
+      if(item) {
+        item$.update({quantity: item.quantity - 1});
       }
     });
   }
