@@ -20,8 +20,10 @@ export class NavbarComponent implements OnInit{
     let cartId = await this.cartService.getCart();
     cartId.subscribe((cart: Cart) => {
       this.cartItemCount = 0;
-      for(let item in cart.items) {
-        this.cartItemCount += cart.items[item].quantity;
+      if(cart){
+        for(let item in cart.items) {
+          this.cartItemCount += cart.items[item].quantity;
+        }
       }
     });
   }

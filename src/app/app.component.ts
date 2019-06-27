@@ -10,7 +10,7 @@ import { UserService } from './services/user.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  cate;
+
   constructor(private userService: UserService, private authService: AuthService, private router: Router) {
     this.authService.user$.subscribe(user => {
       if(!user) return;

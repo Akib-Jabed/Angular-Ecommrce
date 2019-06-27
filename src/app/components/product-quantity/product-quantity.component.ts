@@ -1,25 +1,25 @@
-import { ShoppingCartService } from './../../services/shopping-cart.service';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { ShoppingCartService } from 'src/app/services/shopping-cart.service';
 import { Product } from 'src/app/models/product';
 
 @Component({
-  selector: 'app-product-card',
-  templateUrl: './product-card.component.html',
-  styleUrls: ['./product-card.component.css']
+  selector: 'app-product-quantity',
+  templateUrl: './product-quantity.component.html',
+  styleUrls: ['./product-quantity.component.css']
 })
-export class ProductCardComponent implements OnInit {
+export class ProductQuantityComponent {
 
   @Input('product') product: Product;
-  @Input('show') showButton;
   @Input('cart') cart;
 
   constructor(private cartService: ShoppingCartService) { }
 
-  ngOnInit() {
-  }
-
   addToCart() {
     this.cartService.addToCart(this.product);
+  }
+
+  removeFromCart() {
+    this.cartService.removeFromCart(this.product);
   }
 
   getQuantity() {
