@@ -23,7 +23,7 @@ const routes: Routes = [
   // Only accessible for authenticated users
   { path: 'orders', component: MyOrdersComponent, canActivate: [AuthGaurdService] },
   { path: 'check-out', component: CheckOutComponent, canActivate: [AuthGaurdService] },
-  { path: 'orders-success', component: OrderSuccessComponent, canActivate: [AuthGaurdService] },
+  { path: 'order-success/:order-id', component: OrderSuccessComponent, canActivate: [AuthGaurdService] },
 
   // Only accessible for admin
   { path: 'admin/orders', component: AdminOrdersComponent, canActivate: [AuthGaurdService, AdminGaurdService] },

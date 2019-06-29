@@ -1,6 +1,7 @@
 <h1>Shopping Cart</h1>
-<p>You have {{ totalItemCount }} items in your cart.</p>
+
 <div class="row col-10">
+  <p>You have {{ totalItemCount }} items in your cart.</p>
   <table class="table table-striped">
     <thead class="thead-dark">
       <tr>
@@ -32,4 +33,6 @@
     </tfoot>
   </table>
 </div>
-<button (click)="clearShoppingCart()" class="btn btn-danger">Clear Shopping Cart</button>
+<button *ngIf="totalItemCount" routerLink="/check-out" class="btn btn-primary">Check Out</button>
+<button *ngIf="totalItemCount" (click)="clearShoppingCart()" class="btn btn-danger ml-2">Clear Shopping Cart</button>
+
